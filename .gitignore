@@ -1,0 +1,3 @@
+backend/.env
+logs/db_errors.log
+scratch/

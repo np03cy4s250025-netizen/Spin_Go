@@ -1,0 +1,63 @@
+# Spin_Go root .htaccess — Production security hardening
+
+RewriteEngine On
+
+# ── Enforce HTTPS ───────────────────────────────────────────────────────────────
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} !^localhost [NC]
+RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# ── Redirect root to app ────────────────────────────────────────────────────────
+RewriteRule ^$ /Spin_Go/frontend/pages/index.php [R=301,L]
+
+# ── Block direct access to sensitive files ───────────────────────────────────────
+# .env files — credentials exposure
+<FilesMatch "^\.env(\.example)?$">
+    Require all denied
+</FilesMatch>
+
+# SQL schema and seed scripts — database structure exposure
+<FilesMatch "\.(sql)$">
+    Require all denied
+</FilesMatch>
+
+# PHP scripts in /database/ — CLI-only tooling
+<IfModule mod_rewrite.c>
+    RewriteRule ^database/.*\.php$ - [F,L]
+</IfModule>
+
+# Markdown documentation files — source exposure
+<FilesMatch "\.(md)$">
+    Require all denied
+</FilesMatch>
+
+# Block access to backend config files directly
+<IfModule mod_rewrite.c>
+    RewriteRule ^backend/config/ - [F,L]
+    RewriteRule ^backend/models/ - [F,L]
+</IfModule>
+
+# Block log files
+<FilesMatch "\.(log)$">
+    Require all denied
+</FilesMatch>
+
+# ── Security Headers ────────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com; font-src 'self' data: fonts.gstatic.com cdnjs.cloudflare.com data:; img-src 'self' data: https://images.unsplash.com https://*.unsplash.com blob:; media-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'"
+</IfModule>
+
+# ── Disable directory listing ───────────────────────────────────────────────────
+# Options -Indexes
+
+# ── Block access to version control and system files ───────────────────────────
+<FilesMatch "^(\.git|\.gitignore|composer\.(json|lock)|package\.json|webpack\.config\.js)">
+    Require all denied
+</FilesMatch>

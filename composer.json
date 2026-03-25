@@ -1,0 +1,22 @@
+{
+  "name": "spingo/rental-platform",
+  "description": "SpinGo Car & Bike Rental Platform",
+  "type": "project",
+  "require": {
+    "php": ">=8.0",
+    "phpmailer/phpmailer": "^6.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "SpinGo\\": "backend/"
+    },
+    "classmap": [
+      "backend/models/",
+      "backend/utils/"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist"
+  }
+}

@@ -1,0 +1,109 @@
+/* ══════════════════════════════════════════════════════
+   pages.css — Prose/legal pages + print styles
+   ══════════════════════════════════════════════════════ */
+
+/* ── Prose Page Wrapper (Privacy / Terms) ──────────── */
+.prose-page-wrapper,
+.legal-wrap {
+    padding-top: 100px;
+    padding-bottom: 80px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    min-height: calc(100vh - 350px);
+    background: var(--bg-main);
+}
+
+.prose-page-wrapper h1,
+.legal-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.prose-page-wrapper h2,
+.legal-section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 32px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border-light);
+}
+
+.prose-page-wrapper p,
+.legal-section p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 15px;
+}
+
+.prose-page-wrapper ul,
+.legal-section ul {
+    padding-left: 20px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.prose-page-wrapper li,
+.legal-section li {
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.legal-date { font-size: 13px; color: var(--text-light); margin-bottom: 48px; }
+
+.legal-highlight {
+    background: var(--bg-light);
+    border-left: 4px solid var(--primary);
+    padding: 14px 18px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+.data-table {
+    width: 100%; border-collapse: collapse;
+    margin: 16px 0; font-size: 13px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.data-table th {
+    background: var(--surface);
+    padding: 11px 14px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-muted);
+}
+
+/* ── Print Booking page ─────────────────────────────── */
+.print-page {
+    background: white;
+    color: black;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 40px;
+    font-family: 'Inter', sans-serif;
+}
+
+@media print {
+    body { background: white !important; color: black !important; }
+    * { color: black !important; background: white !important; box-shadow: none !important; }
+    .navbar, .footer, .btn, button { display: none !important; }
+    .print-page { margin: 0; padding: 20px; max-width: 100%; }
+}
