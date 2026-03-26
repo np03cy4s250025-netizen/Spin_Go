@@ -1,0 +1,2 @@
+# Sensitive files are protected by the root .htaccess.
+# This file is intentionally left empty to avoid Apache 2.4 configuration conflicts.
