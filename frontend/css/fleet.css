@@ -1,0 +1,671 @@
+/* ══════════════════════════════════════════════════════
+   fleet.css — Fleet page styles
+   Colours are hardcoded so the price panel never breaks
+   even if a CSS variable is unavailable.
+   ══════════════════════════════════════════════════════ */
+
+/* ── Page wrapper ──────────────────────────────────── */
+.fleet-page-wrapper {
+    background: #f0f2f3;
+    min-height: 100vh;
+    padding-top: 70px;
+}
+
+/* ══════════════════════════════════════════════════════
+   HERO — dark mountain background
+   ══════════════════════════════════════════════════════ */
+.fleet-page-header {
+    position: relative;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(18, 20, 28, 0.70) 0%,
+            rgba(18, 20, 28, 0.50) 60%,
+            rgba(18, 20, 28, 0.80) 100%
+        ),
+        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80')
+        center/cover no-repeat;
+    padding: 90px 5% 80px;
+    text-align: left;
+    min-height: 260px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.fleet-hero-inner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.fleet-page-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -1px;
+    line-height: 1.05;
+    margin: 0 0 12px;
+}
+
+.fleet-page-header h1 .accent-word {
+    color: #e8907a;
+    display: block;
+}
+
+.fleet-page-header p {
+    color: rgba(255,255,255,0.70);
+    font-size: 15px;
+    max-width: 420px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════
+   UNIFIED FILTER BAR — single white pill row
+   ══════════════════════════════════════════════════════ */
+.fleet-controls {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5% 20px;
+}
+
+.fleet-filter-pill-bar {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 60px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 8px 10px 8px 20px;
+    margin-top: -28px;
+    position: relative;
+    z-index: 10;
+    flex-wrap: nowrap;
+    overflow: visible;
+    gap: 6px;
+}
+
+/* Search input */
+.fleet-search-inline {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 100px;
+}
+
+.fleet-search-inline i {
+    position: absolute;
+    left: 4px; top: 50%;
+    transform: translateY(-50%);
+    color: #52525c;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+.fleet-search-inline input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    color: #1a1a1a;
+    padding: 6px 8px 6px 24px;
+}
+
+.fleet-search-inline input::placeholder { color: #9ca3a3; }
+
+/* Dividers */
+.fpb-divider {
+    width: 1px;
+    height: 28px;
+    background: #d0d3d3;
+    flex-shrink: 0;
+    margin: 0 2px;
+}
+
+/* Type filter pills */
+.fleet-type-filters {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-shrink: 1;   /* allow type filters group to give up space */
+}
+
+.fleet-filter-btn {
+    background: transparent;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #52525c;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.fleet-filter-btn.active {
+    background: #3F3E46;
+    color: #ffffff;
+}
+
+.fleet-filter-btn:hover:not(.active) {
+    background: #e8eaea;
+    color: #1a1a1a;
+}
+
+/* City wrapper */
+.fleet-city-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 1;
+}
+
+.fleet-city-input {
+    width: 90px;   /* slightly narrower to free up space */
+}
+
+.fleet-city-wrapper i { color: #7B6262; font-size: 12px; }
+
+.fleet-city-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    color: #52525c;
+    min-width: 0;
+}
+.fleet-city-input::placeholder { color: #9ca3a3; }
+
+/* Sort button with overlaid select */
+.fleet-sort-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8eaea;
+    border: 1.5px solid #c8cccc;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #52525c;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    white-space: nowrap;
+    position: relative;
+}
+
+.fleet-sort-btn:hover { background: #dde0e0; border-color: #3F3E46; }
+.fleet-sort-btn i { font-size: 11px; }
+
+.fleet-sort-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 100%;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* ══════════════════════════════════════════════════════
+   PRICE RANGE PANEL — standalone, below pill bar
+   ══════════════════════════════════════════════════════ */
+.fleet-price-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5% 24px;
+}
+
+/* White card */
+.prs-inner {
+    background: #ffffff;
+    border: 1px solid #c8cccc;
+    border-radius: 20px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    padding: 28px 36px;
+    display: flex;
+    flex-direction: row;          /* explicit — never collapse */
+    align-items: flex-start;
+    gap: 48px;
+    box-sizing: border-box;
+}
+
+/* Left: title + avg */
+.prs-left {
+    flex-shrink: 0;
+    width: 210px;
+    padding-top: 2px;
+}
+
+.prs-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 8px;
+}
+
+.prs-avg {
+    font-size: 13px;
+    color: #52525c;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.prs-avg strong {
+    color: #c9776a;         /* warm accent line */
+    font-weight: 700;
+}
+
+/* Right: histogram + slider + inputs */
+.prs-right {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Histogram area ──────────────────────────────────── */
+.prs-slider-area {
+    margin-bottom: 20px;
+}
+
+.prs-histogram {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 68px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.prs-bar {
+    flex: 1;
+    background: #c8cccc;
+    border-radius: 3px 3px 0 0;
+    min-height: 8px;          /* always a stub even for empty buckets */
+    transition: background 0.2s;
+}
+
+/* Bars inside the selected price window */
+.prs-bar.in-range {
+    background: #3F3E46;
+}
+
+/* ── Dual-handle slider track ─────────────────────────── */
+.prs-track-wrap {
+    position: relative;
+    height: 30px;
+    margin-top: 2px;
+}
+
+.prs-track {
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    height: 4px;
+    background: #c8cccc;
+    border-radius: 2px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Coloured fill between the two thumbs */
+.prs-fill {
+    position: absolute;
+    height: 100%;
+    background: #3F3E46;
+    border-radius: 2px;
+}
+
+/* Both <input type="range"> stack on the same track */
+.prd-range {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    height: 4px;
+    margin: 0;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    pointer-events: none;
+    z-index: 2;
+    outline: none;
+}
+
+.prd-range::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2.5px solid #3F3E46;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.20);
+    cursor: pointer;
+    pointer-events: all;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.prd-range::-webkit-slider-thumb:hover,
+.prd-range::-webkit-slider-thumb:active {
+    transform: scale(1.15);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.28);
+}
+
+.prd-range::-moz-range-thumb {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2.5px solid #3F3E46;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.20);
+    cursor: pointer;
+    pointer-events: all;
+}
+
+/* ── Min / Max input boxes ───────────────────────────── */
+.prs-inputs {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    width: 100%;
+}
+
+.prs-input-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.prs-input-box label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #52525c;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+.prs-input-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid #c8cccc;
+    border-radius: 10px;
+    padding: 11px 14px;
+    background: #ffffff;
+    cursor: text;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.prs-input-inner:focus-within {
+    border-color: #3F3E46;
+    box-shadow: 0 0 0 3px rgba(63,62,70,0.12);
+}
+
+.prs-currency {
+    font-size: 13px;
+    font-weight: 600;
+    color: #52525c;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.prs-input-inner input[type="number"] {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    -moz-appearance: textfield;
+}
+
+.prs-input-inner input[type="number"]::-webkit-outer-spin-button,
+.prs-input-inner input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+/* Dash separator */
+.prs-input-sep {
+    flex-shrink: 0;
+    width: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 14px;
+    color: #9ca3a3;
+    font-size: 16px;
+}
+
+.prs-input-sep::after { content: '—'; }
+
+/* ══════════════════════════════════════════════════════
+   RESULTS COUNT
+   ══════════════════════════════════════════════════════ */
+.fleet-results-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 5% 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fleet-results-count {
+    font-size: 13px;
+    color: #52525c;
+    font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════════════
+   VEHICLE GRID
+   ══════════════════════════════════════════════════════ */
+.fleet-grid-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 5% 60px;
+}
+
+.fleet-vehicle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+/* Card CSS moved to main.css */
+
+/* ══════════════════════════════════════════════════════
+   EMPTY STATE
+   ══════════════════════════════════════════════════════ */
+.fleet-empty { text-align: center; padding: 80px 20px; grid-column: 1/-1; }
+.fleet-empty i { font-size: 48px; color: #c8cccc; display: block; margin-bottom: 16px; }
+.fleet-empty h3 { font-size: 20px; font-weight: 700; color: #52525c; margin-bottom: 8px; }
+.fleet-empty p  { font-size: 15px; color: #52525c; margin-bottom: 16px; }
+
+/* ══════════════════════════════════════════════════════
+   PAGINATION
+   ══════════════════════════════════════════════════════ */
+.fleet-pagination {
+    display: flex; align-items: center;
+    justify-content: center; gap: 6px;
+    padding: 8px 0 48px;
+}
+
+.fleet-page-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid #c8cccc;
+    background: #ffffff; color: #52525c;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: all 0.2s; font-family: inherit;
+}
+
+.fleet-page-btn:hover { background: #e8eaea; color: #3F3E46; }
+.fleet-page-btn.active { background: #3F3E46; color: #ffffff; border-color: #3F3E46; }
+.fleet-page-btn.arrow { border-color: #c8cccc; }
+.fleet-page-btn.arrow:hover { border-color: #3F3E46; }
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .fleet-vehicle-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .fleet-filter-pill-bar {
+        border-radius: 20px;
+        padding: 12px 16px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .fpb-divider { width: 100%; height: 1px; margin: 4px 0; }
+    .fleet-type-filters { justify-content: center; }
+    .fleet-page-header { padding: 70px 5% 60px; }
+    .prs-inner { flex-direction: column; gap: 20px; padding: 20px; }
+    .prs-left { width: 100%; }
+}
+
+@media (max-width: 640px) {
+    .fleet-vehicle-grid { grid-template-columns: 1fr; }
+    .fleet-filter-pill-bar { margin-top: -20px; }
+    .prs-inputs { flex-direction: column; gap: 12px; }
+    .prs-input-sep { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════
+   HOST BADGE — "Listed by Host" pill on vehicle cards
+   ══════════════════════════════════════════════════════ */
+.fleet-host-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(20, 16, 10, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fcd97d;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 4px 10px 4px 8px;
+    border-radius: 20px;
+    border: 1px solid rgba(252, 217, 125, 0.30);
+    pointer-events: none;
+    z-index: 3;
+    white-space: nowrap;
+}
+
+.fleet-host-badge i {
+    font-size: 11px;
+    opacity: 0.9;
+}
+
+/* ══════════════════════════════════════════════════════
+   SORT DROPDOWN
+   ══════════════════════════════════════════════════════ */
+.fleet-sort-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* The sort button label changes text when a sort is selected, which
+   changes the button's width and causes it to wrap to a new line.
+   Fix: lock the label span to the width of the longest possible text
+   ("Price: Low → High") so the button is always the same size. */
+#fleet-sort-btn {
+    min-width: 0;
+}
+#fleet-sort-btn #fleet-sort-label {
+    display: inline-block;
+    width: 120px;          /* wide enough for "Price: Low → High" at 13px/600 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+}
+
+/* Sort panel — position absolute so it floats above content, never pushes layout */
+.fleet-sort-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: auto;
+    width: 220px;
+}
+
+.fleet-sort-options {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.fleet-sort-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #52525c;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: background 0.15s, color 0.15s;
+    width: 100%;
+}
+
+.fleet-sort-option i {
+    width: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: #9ca3a3;
+    flex-shrink: 0;
+    transition: color 0.15s;
+}
+
+.fleet-sort-option:hover {
+    background: #f0f2f3;
+    color: #1a1a1a;
+}
+
+.fleet-sort-option:hover i {
+    color: #3F3E46;
+}
+
+.fleet-sort-option.active {
+    background: #1c1e26;
+    color: #fff;
+}
+
+.fleet-sort-option.active i {
+    color: #e8907a;
+}
+
+/* Active sort button gets accent colouring — same as price has-filter */
+#fleet-sort-btn.has-filter {
+    background: #1c1e26;
+    color: #fff;
+    border-color: #1c1e26;
+}
