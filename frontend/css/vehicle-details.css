@@ -1,0 +1,556 @@
+/* ══════════════════════════════════════════════════════
+   vehicle-details.css — Vehicle Details page
+   Requires: main.css loaded first
+   ══════════════════════════════════════════════════════ */
+
+/* ── Page wrapper ────────────────────────────────────── */
+.details-page-wrapper {
+    background: var(--bg-main);
+    min-height: 100vh;
+    padding-top: 70px;
+    padding-bottom: 80px;
+}
+
+/* ── Back link — sits above the two-column grid ─────── */
+.details-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 28px 5% 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    transition: color 0.2s;
+}
+.details-back-link:hover { color: var(--primary); }
+.details-back-link i { font-size: 11px; }
+
+/* ── Two-column page layout ──────────────────────────── */
+.details-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 0;                          /* was 32px — remove gap, use divider instead */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;                      /* was 20px 5% 40px — move padding inside columns */
+    align-items: start;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+/* ── LEFT COLUMN ─────────────────────────────────────── */
+.details-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 28px 32px;
+}
+
+/* ── Vehicle Image ───────────────────────────────────── */
+.details-image {
+    background: linear-gradient(135deg, #d6dadb 0%, #c3c8c8 60%, #b0b8b8 100%);
+    border-radius: var(--radius-lg);
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.details-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-image-icon {
+    font-size: 90px;
+    color: var(--primary);
+    opacity: 0.15;
+}
+
+/* ── Category + City badge row ───────────────────────── */
+.details-badge-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.details-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 13px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    background: var(--bg-light);
+    color: var(--text-muted);
+    border: 1px solid var(--border-light);
+}
+
+/* ── Vehicle name + price header ─────────────────────── */
+.details-name-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.details-content h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.details-price-block {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.details-price-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.vehicle-price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.vehicle-price-period {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* ── Spec cards — 4 boxes in a row ──────────────────── */
+.vehicle-specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.spec-item {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    transition: var(--transition-fast);
+    cursor: default;
+}
+
+.spec-item:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.spec-item i {
+    font-size: 18px;
+    color: var(--primary);
+    margin-bottom: 2px;
+}
+
+.spec-item .spec-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.spec-item .spec-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* ── Description section ─────────────────────────────── */
+.details-description {
+    margin-bottom: 28px;
+}
+
+.details-description h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+
+.details-description p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
+}
+
+/* ── Feature checklist — 2 columns ──────────────────── */
+.details-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 24px;
+}
+
+.details-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.details-feature-item i {
+    color: var(--primary);
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+/* ── RIGHT COLUMN — Booking Card ─────────────────────── */
+.booking-form-card {
+    background: var(--white);
+    border: none;                    /* remove individual border */
+    box-shadow: none;                /* remove individual shadow */
+    border-left: 1px solid var(--border-light);  /* only a divider */
+    border-radius: 0;               /* corners handled by parent */
+    padding: 28px 24px;
+    position: sticky;
+    top: 90px;
+}
+
+.booking-form-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 22px;
+    letter-spacing: -0.2px;
+}
+
+.booking-form-group { margin-bottom: 16px; }
+
+.booking-form-group label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 7px;
+}
+
+.booking-form-group input[type="date"] {
+    width: 100%;
+    background: var(--white);
+    border: 1.5px solid var(--border-light);
+    color: var(--text-main);
+    padding: 11px 14px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.booking-form-group input[type="date"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* ── File upload area ─────────────────────────────────── */
+.booking-file-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--white);
+    border: 1.5px dashed var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 20px 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-align: center;
+}
+
+.booking-file-input:hover,
+.booking-file-input:focus-within {
+    border-color: var(--primary);
+    background: var(--bg-light);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.booking-file-input i {
+    color: var(--text-muted);
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.booking-file-input .file-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.booking-file-input input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.booking-file-label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+/* ── Price breakdown table inside card ───────────────── */
+.booking-price-breakdown {
+    background: var(--bg-light);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid var(--border-light);
+}
+
+.booking-price-breakdown.visible { display: flex; }
+
+.breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.breakdown-row .breakdown-amount { font-weight: 600; color: var(--text-main); }
+
+.breakdown-divider {
+    border: none;
+    border-top: 1px solid var(--border-light);
+    margin: 4px 0;
+}
+
+.breakdown-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    padding-top: 4px;
+}
+
+.breakdown-total .total-amount {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+/* ── Booking alerts ──────────────────────────────────── */
+.booking-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+.booking-alert-error {
+    background: rgba(220,38,38,0.08);
+    color: #991b1b;
+    border: 1px solid rgba(220,38,38,0.25);
+}
+
+.booking-alert-success {
+    background: rgba(5,150,105,0.08);
+    color: #166534;
+    border: 1px solid rgba(5,150,105,0.25);
+}
+
+/* ── Confirm booking button ───────────────────────────── */
+.btn-confirm-booking {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    letter-spacing: 0.2px;
+    margin-top: 4px;
+}
+
+.btn-confirm-booking:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-premium);
+}
+
+/* ── Booking legal note ──────────────────────────────── */
+.booking-legal {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+/* ── Guest CTA ───────────────────────────────────────── */
+.details-guest-cta {
+    background: var(--white);
+    border: none;
+    box-shadow: none;
+    border-left: 1px solid var(--border-light);
+    border-radius: 0;
+    padding: 28px;
+    text-align: center;
+}
+
+.details-guest-cta p { color: var(--text-main); margin-bottom: 16px; font-size: 15px; }
+.btn-login-to-book { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
+.details-guest-cta .register-link { color: var(--text-muted); font-size: 13px; margin-top: 12px; display: block; }
+.details-guest-cta .register-link a { color: var(--primary); font-weight: 600; text-decoration: none; }
+.details-guest-cta .register-link a:hover { text-decoration: underline; }
+
+/* ── Trust badges row (hidden from old code, can keep for compat) ── */
+.details-trust,
+.details-trust-bar {
+    display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; margin-bottom: 16px;
+}
+.details-trust-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 500; color: var(--text-light);
+}
+.details-trust-item i { color: var(--accent); font-size: 14px; }
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 960px) {
+    .details-wrapper {
+        grid-template-columns: 1fr;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+    .details-left {
+        padding: 16px 4%;
+    }
+    .booking-form-card {
+        border-left: none;
+        border-top: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-light);
+        box-shadow: var(--shadow-sm);
+        position: static;
+    }
+    .details-guest-cta {
+        border-left: none;
+        border-top: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-light);
+        box-shadow: var(--shadow-sm);
+    }
+    .vehicle-specs { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .details-image { height: 240px; }
+    .details-wrapper { padding: 16px 4% 32px; }
+    .vehicle-price { font-size: 20px; }
+    .vehicle-specs { grid-template-columns: repeat(2, 1fr); }
+    .details-features { grid-template-columns: 1fr; }
+    .details-name-price { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .details-price-block { text-align: left; }
+    .details-back-link { padding: 20px 4% 0; }
+}
+
+/* ══════════════════════════════════════════════════════
+   HOST BLOCKED BOOKING PANEL
+   Replaces the booking form when the viewer is a host.
+   ══════════════════════════════════════════════════════ */
+.booking-host-blocked {
+    text-align: center;
+    padding: 32px 24px;
+}
+
+.host-blocked-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #1c1e26 0%, #2d3048 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    box-shadow: 0 4px 16px rgba(28,30,38,0.20);
+}
+
+.host-blocked-icon i {
+    font-size: 26px;
+    color: #fcd97d;
+}
+
+.booking-host-blocked h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+}
+
+.host-blocked-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
