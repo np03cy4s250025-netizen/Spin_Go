@@ -1,0 +1,380 @@
+/* frontend/css/payment.css — SpinGo Payment Flow Styling */
+
+.payment-page {
+    max-width: 1000px;
+    margin: 100px auto 60px;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 28px;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .payment-page {
+        grid-template-columns: 1fr;
+        margin-top: 80px;
+    }
+}
+
+.payment-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.payment-heading h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+.payment-heading p {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+.payment-card, .summary-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.summary-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.summary-banner {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+}
+
+.summary-content {
+    padding: 24px 32px 32px;
+}
+
+.card-section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.pay-field {
+    margin-bottom: 20px;
+}
+
+.pay-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 8px;
+}
+
+.pay-field input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    background: var(--white);
+    transition: border-color var(--fast), box-shadow var(--fast);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.pay-field input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(63,62,70,0.10);
+}
+
+.pay-field input.input-error {
+    border-color: var(--status-cancelled);
+}
+
+.pay-field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-pill);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background var(--fast), transform var(--fast), box-shadow var(--fast);
+}
+
+.pay-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-premium);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.summary-row .label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.summary-row .value {
+    color: var(--text-main);
+    font-weight: 600;
+    text-align: right;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0 4px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.ssl-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.ssl-badge i {
+    color: var(--accent);
+}
+
+#payment-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+#payment-overlay .spinner {
+    font-size: 36px;
+    color: var(--primary);
+    animation: spin 0.9s linear infinite;
+    width: auto; height: auto; border: none; /* Reset spinner from previous implementation */
+}
+
+#payment-overlay p {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.cancel-booking-link {
+    display: inline-block;
+    margin-top: 24px;
+    color: var(--text-muted);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color var(--fast);
+}
+
+.cancel-booking-link:hover {
+    color: var(--status-cancelled);
+}
+
+/* Confirmation Page Specifics */
+.conf-wrapper {
+    max-width: 800px;
+    margin: 120px auto 60px;
+    padding: 0 5%;
+}
+
+.conf-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 48px 32px;
+    text-align: center;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-premium);
+}
+
+.success-check {
+    font-size: 64px;
+    color: var(--status-active);
+    margin-bottom: 24px;
+}
+
+.txn-ref {
+    font-family: monospace;
+    background: var(--bg-light);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    color: var(--text-main);
+    display: inline-block;
+    margin-bottom: 32px;
+}
+
+.conf-summary-table {
+    width: 100%;
+    margin: 32px 0;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.conf-summary-table th, .conf-summary-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.conf-summary-table th {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.conf-summary-table td {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.conf-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+@media print {
+    .navbar, .conf-actions, .footer { display: none !important; }
+    body { background: white; padding: 0; }
+    .conf-wrapper { margin: 0; padding: 0; max-width: 100%; }
+    .conf-card { border: none; box-shadow: none; padding: 0; }
+}
+
+/* New Payment Tab & OTP Styles */
+.pay-tab-bar { 
+    display: flex; 
+    gap: 8px; 
+    margin-bottom: 28px; 
+    border-bottom: 2px solid var(--border); 
+    padding-bottom: 16px; 
+}
+
+.pay-tab { 
+    padding: 10px 20px; 
+    border-radius: var(--radius-pill); 
+    border: 1.5px solid var(--border); 
+    background: var(--white); 
+    font-family: 'Space Grotesk', sans-serif; 
+    font-size: 14px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: all var(--fast); 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    color: var(--text-muted); 
+}
+
+.pay-tab.active { 
+    background: var(--primary); 
+    color: var(--white); 
+    border-color: var(--primary); 
+}
+
+.tab-dot { 
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    display: inline-block; 
+}
+
+.esewa-dot { background: #60BB47; }
+.khalti-dot { background: #5C2D91; }
+
+.otp-input { 
+    font-size: 22px; 
+    font-weight: 700; 
+    letter-spacing: 8px; 
+    text-align: center; 
+    font-family: 'Space Grotesk', monospace; 
+}
+
+.otp-countdown { 
+    font-size: 12px; 
+    color: var(--text-muted); 
+    display: block; 
+    text-align: center; 
+    margin-top: 8px; 
+}
+
+.pay-btn-otp { 
+    width: 100%; 
+    padding: 13px; 
+    background: transparent; 
+    border: 1.5px solid var(--primary); 
+    color: var(--primary); 
+    border-radius: var(--radius-pill); 
+    font-family: 'Space Grotesk', sans-serif; 
+    font-size: 15px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    margin-top: 8px; 
+    transition: all var(--fast); 
+}
+
+.pay-btn-otp:hover { 
+    background: var(--primary); 
+    color: var(--white); 
+}
+
+.pay-btn-otp:disabled { 
+    opacity: 0.5; 
+    cursor: not-allowed; 
+}
+
